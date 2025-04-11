@@ -1,5 +1,7 @@
 import { hexToRGBA, getFilteredData, parseCSV } from "./utils.js";
 import { loadConfig } from "./config.js";
+import { openCardModal } from "./components/cardModal/cardModal.js";
+
 
 // États internes de la grille
 let allCards = [];
@@ -132,6 +134,9 @@ function renderCards(cards) {
       </div>
     `;
     gridContainer.appendChild(cardElement);
+    cardElement.addEventListener("click", (event) => {
+      openCardModal(card, event);
+    });
     
     if (!card.dataAvailable) {
       renderCardData(card.Symbol, { dataAvailable: false, special: card.special });

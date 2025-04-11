@@ -369,8 +369,8 @@
 /* Conteneur de la carte détaillée */
 .new-card {
   position: relative;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   background-color: #1b1b1b;
   color: #fff;
   padding: 20px;
@@ -516,4 +516,513 @@
 /* Ajout d'un léger padding en bas pour éviter que le contenu ne touche le bord */
 .new-card-content {
   padding-bottom: 20px;
+}
+
+
+
+
+/* MODAL DETAIL - MAQH */
+
+#card-detail-container {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInModal 0.3s ease-out;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Onglets */
+.card-detail-tabs {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.card-detail-tabs .tab-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  margin-right: 20px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: inherit;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.card-detail-tabs .tab-btn:hover {
+  border-color: #999;
+  color: #ccc;
+}
+
+.card-detail-tabs .tab-btn.active {
+  border-color: #FFD700;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+#card-detail-close-button {
+  color: #b57a7a;
+  background: transparent;
+}
+
+/* Contenu (injection dynamique) */
+#tab-content-wrapper {
+  flex: 10;
+  overflow-y: auto;
+  padding-right: 10px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+}
+
+/* Scroll personnalisé */
+#tab-content-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+#tab-content-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#tab-content-wrapper::-webkit-scrollbar-thumb {
+  /*background-color: rgba(255, 255, 255, 0.1); /* presque invisible */
+  background-color: #ffd90085;
+  border-radius: 5px;
+}
+
+
+
+/* JSON <pre> */
+#tab-content-wrapper pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: inherit;
+  margin: 0; 
+}
+
+/* Effet d'apparition */
+@keyframes fadeInModal {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* barre de recherche du Modal*/
+/* Barre de recherche du Modal */
+#modal-search-container {
+  position: absolute;
+  top: 10px;
+  right: 190px;
+  display: flex;
+  align-items: center;
+  gap: -2px;
+}
+
+.search-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.search_icon {
+  height: 1.2em;
+  fill: #fff;
+}
+
+.inputBox_container {
+  display: flex;
+  align-items: center;
+  background-color: #5c6370;
+  border-radius: 0.7em;
+  overflow: hidden;
+  padding: 0 0.7em;
+  max-width: 14em;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.inputBox_container.hidden {
+  display: none;
+}
+
+.inputBox {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0.4em;
+  width: 100%;
+  outline: none;
+}
+
+::placeholder {
+  color: #abb2bf;
+}
+
+#result-counter {
+  color: #fff;
+  font-size: 0.8em;
+  margin: 0 6px;
+}
+
+mark.highlight {
+  background-color: yellow;
+  color: black;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+mark.current {
+  background-color: orange;
+}
+/* Corriger la couleur des flèches */
+#prev-result,
+#next-result {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 0.2em 0.4em;
+  transition: background-color 0.2s ease;
+}
+
+#prev-result:hover,
+#next-result:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Style pour le bouton de loupe minimaliste */
+#search-toggle {
+  background-color: #5c6370;
+  border-radius: 30%;
+  padding: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+#search-toggle:hover {
+  background-color: #717a8a;
+}
+
+/* Assure que l'icône garde sa couleur dans tous les cas */
+#search-toggle .search_icon {
+  fill: #ffffff;
+  height: 1.2em;
+  width: 1.2em;
+}
+
+
+
+/************************************* */
+
+/*table-json formateur (concernant détail) */
+
+.json-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.json-table th, .json-table td {
+  border: 1px solid #444;
+  padding: 8px;
+  text-align: left;
+}
+
+.json-table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.json-table tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+
+/************************************* */
+
+/*tableau notation */
+
+.wrapper {
+  max-width: 100%;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.row {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 0;
+  transition: all 0.6s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.row ul {
+  display: flex;
+  margin: 0;
+  padding: 0 15px;
+  list-style: none;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.row ul li {
+  flex: 1;
+  padding: 5px;
+  text-align: left;
+}
+
+.row ul li:last-child {
+  text-align: right;
+  font-weight: bold;
+}
+
+
+.row.title {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+  font-size: 18px;
+  border-left: 5px solid #888;
+}
+
+.row.total-row {
+  background: rgba(0, 128, 0, 0.2);
+  font-weight: bold;
+  font-size: 18px;
+  border-left: 5px solid green;
+}
+
+.row.total-row.row:hover {
+  background: rgb(0, 128, 0);
+}
+
+.more-content {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.row:hover .more-content {
+  opacity: 1;
+  height: auto;
+  padding: 5px 15px 10px;
+}
+
+.row ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row-c10 { border-left: 4px solid #e6c84c; } /* jaune */
+.row-c11 { border-left: 4px solid #e6c84c; }
+
+.row-c14 { border-left: 4px solid #3cd070; } /* vert */
+.row-c15 { border-left: 4px solid #3cd070; }
+.row-c16 { border-left: 4px solid #3cd070; }
+
+.row-c12 { border-left: 4px solid #ff9933; } /* orange */
+.row-c8  { border-left: 4px solid #ff9933; }
+.row-c9  { border-left: 4px solid #ff9933; }
+
+.row-c13 { border-left: 4px solid #33b5e5; } /* bleu */
+.row-c4  { border-left: 4px solid #33b5e5; }
+.row-c1  { border-left: 4px solid #33b5e5; }
+.row-c2  { border-left: 4px solid #33b5e5; }
+.row-c3  { border-left: 4px solid #33b5e5; }
+
+.row-c5  { border-left: 4px solid #ff66cc; } /* rose */
+.row-c6  { border-left: 4px solid #ff66cc; }
+.row-c7  { border-left: 4px solid #ff66cc; }
+
+.row.section-header {
+  background-color: #1b1b1b;
+  height: 0px;
+  padding: 30px 0;
+  font-size: 12px;
+  font-display: italic;
+  text-transform: uppercase;
+  text-align: right;
+  font-weight: bold;
+  border-left: none;
+  color: white;
+  cursor: default;
+}
+
+/* graphique 
+
+.graph-container {
+  height: auto;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  flex-direction: column; 
+}
+
+.graph-container canvas {
+  max-width: 90%;
+  width: 500px;
+}
+
+.graph-container .chartjs-title,
+.graph-container .chart-legend,
+.graph-container .legend-label {
+  font-size: 20px !important;
+  color: inherit;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.info-icon {
+  font-size: 14px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.info-icon:hover {
+  color: rgb(109, 35, 35);
+}
+.row .chart-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+*/
+
+
+/* From Uiverse.io by cosnametv */
+.loader {
+  --color: #a5a5b0;
+  --size: 170px;
+  width: var(--size);
+  height: var(--size);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.loader span {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color);
+  animation: keyframes-blink 0.6s alternate infinite linear;
+}
+
+.loader span:nth-child(1) { animation-delay: 0ms; }
+.loader span:nth-child(2) { animation-delay: 100ms; }
+.loader span:nth-child(3) { animation-delay: 200ms; }
+.loader span:nth-child(4) { animation-delay: 300ms; }
+.loader span:nth-child(5) { animation-delay: 400ms; }
+.loader span:nth-child(6) { animation-delay: 500ms; }
+
+@keyframes keyframes-blink {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.5) rotate(5deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/*parametrage de l'onglet notation icone*/
+
+.setting-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: #948030;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 0px 0px 2px rgb(212, 209, 255);
+  transition: transform 0.2s ease;
+  top: 10px;
+  right: 10px;
+}
+
+.setting-btn:hover {
+  transform: scale(1.05);
+}
+
+.bar {
+  width: 50%;
+  height: 2px;
+  background-color: rgb(229, 229, 229);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 2px;
+}
+.bar::before {
+  content: "";
+  width: 2px;
+  height: 2px;
+  background-color: #948030;
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all 0.3s;
+  box-shadow: 0px 0px 5px white;
+}
+.bar1::before {
+  transform: translateX(-4px);
+}
+.bar2::before {
+  transform: translateX(4px);
+}
+.setting-btn:hover .bar1::before {
+  transform: translateX(4px);
+}
+.setting-btn:hover .bar2::before {
+  transform: translateX(-4px);
+}
+
+.notation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 10px 10px 10px;
+}
+
+.notation-header h2 {
+  font-size: 24px;
+  margin: 0;
 }

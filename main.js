@@ -12,7 +12,13 @@ app.whenReady().then(() => {
       contextIsolation: false
     }
   });
-  // Permet à @electron/remote d'accéder aux webContents de la fenêtre
+
+  // Activer remote
   remoteMain.enable(win.webContents);
+
+  // Charger ton fichier HTML
   win.loadFile('index.html');
+
+  // Ouvrir automatiquement les DevTools
+  win.webContents.openDevTools(); // 👈 AJOUT ICI
 });
